@@ -1,103 +1,162 @@
-import Image from "next/image";
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { ArrowRight, TrafficCone, Radar, Siren, Map, Camera, Gauge } from "lucide-react"
 
-export default function Home() {
+export default function Page() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="flex min-h-[100dvh] flex-col bg-white">
+      <header className="sticky top-0 z-40 border-b bg-white/80 backdrop-blur">
+        <div className="container mx-auto flex h-16 items-center justify-between px-4">
+          <Link href="/" className="flex items-center gap-2 font-semibold">
+            <TrafficCone className="h-5 w-5 text-emerald-600" />
+            <span>MoveEase</span>
+          </Link>
+          <nav className="hidden items-center gap-6 text-sm md:flex">
+            <Link href="#features" className="text-muted-foreground hover:text-foreground">
+              Features
+            </Link>
+            <Link href="#solutions" className="text-muted-foreground hover:text-foreground">
+              Solutions
+            </Link>
+            <Link href="#contact" className="text-muted-foreground hover:text-foreground">
+              Contact
+            </Link>
+          </nav>
+          <div className="flex items-center gap-2">
+            <Link href="/dashboard">
+              <Button className="bg-emerald-600 hover:bg-emerald-700">
+                Open Dashboard
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
+          </div>
         </div>
+      </header>
+
+      <main className="flex-1">
+        <section className="relative overflow-hidden">
+          <div className="container mx-auto grid gap-10 px-4 py-16 md:grid-cols-2 md:gap-16 md:py-24">
+            <div className="flex flex-col justify-center">
+              <div className="mb-3 inline-flex w-fit items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-700 ring-1 ring-emerald-100">
+                Real-time Traffic Intelligence
+              </div>
+              <h1 className="text-balance text-4xl font-bold tracking-tight md:text-5xl">
+                Manage city traffic with clarity and control
+              </h1>
+              <p className="mt-4 max-w-[60ch] text-muted-foreground md:text-lg">
+                MoveEase provides unified visibility into incidents, congestion, cameras, and signals—helping operators
+                respond faster and commuters move safer.
+              </p>
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                <Link href="/dashboard">
+                  <Button size="lg" className="w-full bg-emerald-600 hover:bg-emerald-700 sm:w-auto">
+                    Launch Console
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+                <Link href="#features">
+                  <Button size="lg" variant="outline" className="w-full sm:w-auto bg-transparent">
+                    Explore Features
+                  </Button>
+                </Link>
+              </div>
+            </div>
+            <div className="relative">
+              <img
+                src="/city-traffic-dashboard.png"
+                alt="City traffic dashboard preview"
+                className="mx-auto aspect-video w-full rounded-xl border object-cover shadow-sm"
+              />
+            </div>
+          </div>
+        </section>
+
+        <section id="features" className="border-t bg-muted/30">
+          <div className="container mx-auto grid gap-8 px-4 py-16 md:grid-cols-3">
+            <div className="rounded-xl border bg-background p-6">
+              <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-50 text-emerald-700">
+                <Radar className="h-5 w-5" />
+              </div>
+              <h3 className="text-lg font-semibold">Live Congestion</h3>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Monitor speed and flow across corridors. Detect slowdowns before they cascade.
+              </p>
+            </div>
+            <div className="rounded-xl border bg-background p-6">
+              <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-amber-50 text-amber-700">
+                <Siren className="h-5 w-5" />
+              </div>
+              <h3 className="text-lg font-semibold">Incident Management</h3>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Log, triage, and resolve incidents with clear workflows and real-time updates.
+              </p>
+            </div>
+            <div className="rounded-xl border bg-background p-6">
+              <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-zinc-50 text-zinc-700">
+                <Camera className="h-5 w-5" />
+              </div>
+              <h3 className="text-lg font-semibold">Cameras & Signals</h3>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Check camera feeds and coordinate signal states to keep traffic moving.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section id="solutions">
+          <div className="container mx-auto grid gap-10 px-4 py-16 lg:grid-cols-[1.2fr_1fr]">
+            <div className="rounded-xl border p-6">
+              <h2 className="text-2xl font-semibold">Unified traffic operations</h2>
+              <p className="mt-2 text-muted-foreground">
+                Bring maps, analytics, and controls together in one console built for operators.
+              </p>
+              <ul className="mt-6 grid gap-3 text-sm text-muted-foreground">
+                <li className="flex items-center gap-2">
+                  <Gauge className="h-4 w-4 text-emerald-600" /> KPI monitoring for speed, flow, and incidents
+                </li>
+                <li className="flex items-center gap-2">
+                  <Map className="h-4 w-4 text-emerald-600" /> Corridor-level congestion overview
+                </li>
+                <li className="flex items-center gap-2">
+                  <Siren className="h-4 w-4 text-emerald-600" /> Incident lifecycle and alerting
+                </li>
+                <li className="flex items-center gap-2">
+                  <Camera className="h-4 w-4 text-emerald-600" /> Camera grids with quick snapshots
+                </li>
+              </ul>
+              <div className="mt-6">
+                <Link href="/dashboard">
+                  <Button className="bg-emerald-600 hover:bg-emerald-700">Try the Dashboard</Button>
+                </Link>
+              </div>
+            </div>
+            <div className="rounded-xl border p-6">
+              <img
+                src="/traffic-command-center-operator.png"
+                alt="Operator using traffic command center"
+                className="aspect-video w-full rounded-lg border object-cover"
+              />
+            </div>
+          </div>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+      <footer id="contact" className="border-t">
+        <div className="container mx-auto flex flex-col items-center justify-between gap-4 px-4 py-8 md:flex-row">
+          <p className="text-xs text-muted-foreground">© {new Date().getFullYear()} MoveEase. All rights reserved.</p>
+          <div className="flex items-center gap-6 text-xs text-muted-foreground">
+            <Link href="#" className="hover:underline">
+              Privacy
+            </Link>
+            <Link href="#" className="hover:underline">
+              Terms
+            </Link>
+            <Link href="#" className="hover:underline">
+              Support
+            </Link>
+          </div>
+        </div>
       </footer>
     </div>
-  );
+  )
 }
